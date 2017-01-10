@@ -1,0 +1,38 @@
+// FONT IMPORT
+@import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700');
+
+// BASE CONFIG
+$font-base-px: 16px !default;
+
+// SUSY CONFIGURATION
+$susy: (
+  columns: 12,  // The number of columns in your grid
+  gutters: 4/12 // The size of a gutter in relation to a single column
+);
+
+// BREAKPOINTS
+$breakpoint-desktop: 850px !default;
+$breakpoint-tablet: 681px 849px !default;
+$breakpoint-mobile: 0 680px !default;
+$breakpoint-tablet-mobile: 0 849px !default;
+
+// COLORS
+$color-primary: #34495E !default;
+$color-secondary: #f39b12 !default;
+
+$main-nav__color-primary: $color-primary;
+$main-nav__color-border: #4f7091 !default;
+$main-nav__color-hover: $color-secondary !default;
+
+// FONTS
+$font-family-base: 'Lato', sans-serif !default;
+$font-weight-normal: 400;
+$font-weight-light: 300;
+
+// ICON FONT
+$font-family-icons: 'icomoon' !default;
+$icon-font-blurb: '\e9f3';
+$icon-font-contact: '\f003';
+$icon-font-git: '\f09b';
+$icon-font-portfolio: '\f1fc';
+$icon-font-experiment: '\f0c3';
