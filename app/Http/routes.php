@@ -4,14 +4,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Authentication Routes...
-$this->get('admin/login', 'Auth\AuthController@showLoginForm');
-$this->post('admin/login', 'Auth\AuthController@login');
-$this->get('admin/logout', 'Auth\AuthController@logout');
+Route::group(['prefix' => 'admin'], function () {
+  // Authentication Routes...
+  $this->get('login', 'Auth\AuthController@showLoginForm');
+  $this->post('login', 'Auth\AuthController@login');
+  $this->get('logout', 'Auth\AuthController@logout');
 
-// Password Reset Routes...
-$this->get('admin/password/reset/{token?}', 'Auth\PasswordController@showResetForm');
-$this->post('admin/password/email', 'Auth\PasswordController@sendResetLinkEmail');
-$this->post('admin/password/reset', 'Auth\PasswordController@reset');
+  // Password Reset Routes...
+  $this->get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+  $this->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
+  $this->post('password/reset', 'Auth\PasswordController@reset');
 
-Route::get('/admin', 'AdminController@index');
+  Route::get('/', 'AdminController@index');
+});
