@@ -14,4 +14,5 @@ Route::group(['prefix' => 'admin'], function () {
   $this->post('password/reset', 'Auth\PasswordController@reset');
 
   Route::get('/', 'AdminController@index');
+  Route::get('/tags', 'AdminController@tags');
 });

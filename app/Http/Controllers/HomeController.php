@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Tag;
+
 class HomeController extends Controller
 {
   public function index() {
-    return view('site/index');
+    $tags = Tag::all();
+    
+    return view('site/index', [
+      'tags' => $tags
+    ]);
   }
 }
