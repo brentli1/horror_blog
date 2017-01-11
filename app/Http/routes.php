@@ -1,6 +1,10 @@
 <?php
 
 Route::get('/', 'HomeController@index');
+Route::get('/tags', 'TagsController@index');
+Route::get('/tags/{id}', 'TagsController@show');
+Route::get('/movies', 'MoviesController@index');
+Route::get('/movies/{id}', 'MoviesController@show');
 
 Route::group(['prefix' => 'admin'], function () {
   // Authentication Routes...

@@ -1,0 +1,27 @@
+.main-nav {
+  @include rem("padding", 20px 30px);
+  align-items: center;
+  background-color: #2D2D2D;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  width: 100%;
+
+  &__logo {
+    color: #FFF;
+  }
+
+  &__nav-item {
+    @include rem("font-size", 18px);
+    @include rem("margin-left", 15px);
+    display: inline-block;
+    font-weight: $font-weight-light;
+    text-transform: uppercase;
+  }
+
+  &__nav-link {
+    &:hover {
+      color: #e50000;
+    }
+  }
+}
