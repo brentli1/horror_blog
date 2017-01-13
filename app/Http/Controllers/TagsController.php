@@ -27,4 +27,35 @@ class TagsController extends Controller
       'movies' => $movies
     ]);
   }
+
+  // ADMIN FUNCTIONALITY
+  public function tagCreate(Request $request) {
+    $this->validate($request, [
+      'name' => 'required|unique:tags'
+    ]);
+
+    $tag = new Tag;
+    $tag->name = $request->name;
+    $tag->save();
+    
+    return Redirect('/admin/tags');
+  }
+
+  public function tagEdit($id, Request $request) {
+    $this->validate($request, [
+      'name' => 'required|unique:tags,name,'.$id
+    ]);
+
+    $tag = Tag::find($id);
+    $tag->name = $request->name;
+    $tag->save();
+    
+    return Redirect('/admin/tags');
+  }
+
+  public function tagDelete($id) {
+    $tag = Tag::find($id);
+    $tag->movies()->detach();
+    $tag->delete();
+  }
 }

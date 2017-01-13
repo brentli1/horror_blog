@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 use App\Http\Requests;
 use App\Movie;
 
@@ -27,5 +27,39 @@ class MoviesController extends Controller
       'tags' => $tags,
       'reviews' => $reviews
     ]);
+  }
+
+  // ADMIN FUNCTIONALITY
+  public function movieCreate(Request $request) {
+    $this->validate($request, [
+      'title' => 'required|unique:movies',
+      'release_date' => 'required'
+    ]);
+
+    $movie = new Movie;
+    $movie->title = $request->title;
+    $movie->release_date = Carbon::createFromFormat('Y-m-d', $request->release_date);
+    $movie->save();
+    
+    return Redirect('/admin/movies');
+  }
+
+  public function movieEdit($id, Request $request) {
+    $this->validate($request, [
+      'title' => 'required|unique:movies,title,'.$id
+    ]);
+
+    $movie = Movie::find($id);
+    $movie->title = $request->title;
+    $movie->release_date = Carbon::createFromFormat('Y-m-d', $request->release_date);
+    $movie->save();
+    
+    return Redirect('/admin/movies');
+  }
+
+  public function movieDelete($id) {
+    $movie = Movie::find($id);
+    $movie->tags()->detach();
+    $movie->delete();
   }
 }

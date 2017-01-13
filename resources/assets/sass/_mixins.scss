@@ -29,3 +29,19 @@
     #{$property}: $rem-values;
   }
 }
+
+@mixin button() {
+  @include rem("padding", 10px 20px);
+  background-color: $color-secondary;
+  border-bottom: 1px solid $color-primary;
+  border-top: 1px solid $color-primary;
+  color: #FFFFFF;
+  display: inline-block;
+  text-transform: uppercase;
+  transition: background-color 250ms;
+
+  &:hover {
+    background-color: darken($color-secondary, 5);
+    cursor: pointer;
+  }
+}
