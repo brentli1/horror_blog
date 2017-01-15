@@ -4,14 +4,7 @@
 // BASE CONFIG
 $font-base-px: 16px !default;
 
-// SUSY CONFIGURATION
-$susy: (
-  columns: 12,  // The number of columns in your grid
-  gutters: 4/12 // The size of a gutter in relation to a single column
-);
-
 // BREAKPOINTS
-$breakpoint-desktop: 850px !default;
 $breakpoint-tablet: 681px 849px !default;
 $breakpoint-mobile: 0 680px !default;
 $breakpoint-tablet-mobile: 0 849px !default;

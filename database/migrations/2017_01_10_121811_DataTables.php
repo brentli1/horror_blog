@@ -22,6 +22,7 @@ class DataTables extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('path');
+            $table->integer('featured');
             $table->integer('movie_id')->unsigned();
             $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
             $table->timestamps();

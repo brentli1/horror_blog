@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Tag;
 use App\Movie;
+use App\Review;
 
 class AdminController extends Controller
 {
@@ -62,7 +64,8 @@ class AdminController extends Controller
     $movie->release_date = date('Y-m-d', strtotime($movie->release_date));
     $allTags = Tag::all();
     $tags = $movie->tags()->get();
-    $reviews = $movie->reviews()->get();
+    $review = $movie->reviews()->where('user_id', Auth::user()->id)->get();
+    $images = $movie->images()->get();
 
     if(count($tags) !== 0) {
       foreach($allTags as $tag){
@@ -78,7 +81,8 @@ class AdminController extends Controller
     return view('admin/movies/edit', [
       'movie' => $movie,
       'allTags' => $allTags,
-      'reviews' => $reviews
+      'review' => $review,
+      'images' => $images
     ]);
   }
 }

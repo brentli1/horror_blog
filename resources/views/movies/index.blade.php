@@ -1,19 +1,19 @@
 @extends('layouts.site')
 
 @section('content')
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="panel panel-default">
-          <div class="panel-heading">Movies</div>
-          @foreach($movies as $movie)
-            <li>{{$movie->title}}</li>
-          @endforeach
-          <div class="panel-body">
-            Movies Landing Page
+<div class="movies container">
+  <ul class="movies__list">
+    @foreach($movies as $movie)
+      <li class="movies__list-item">
+        <a class="movies__item-wrapper" href="/movies/{{$movie->id}}">
+          <div class="movies__image-container" style="background-image: url({{$movie->path}});"></div>
+          <div class="movies__info">
+            <div class="movies__title">{{$movie->title}}</div>
+            <div class="movies__date">Updated: {{$movie->updated_at->format('l, F Y')}}</div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        </a>
+      </li>
+    @endforeach
+  </ul>
+</div>
 @stop
