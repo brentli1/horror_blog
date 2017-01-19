@@ -9,10 +9,11 @@
   <!-- Navigation -->
   @include('site.main-nav')
 
+  @yield('header')
+
   <!-- Main Body -->
   <section class="main-body">
     @yield('content')
-    @yield('sidebar')
   </section>
 
   <!-- Javascripts -->

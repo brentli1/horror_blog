@@ -15,6 +15,7 @@ class DataTables extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->unique();
+            $table->string('synopsis', 1000);
             $table->dateTime('release_date');
             $table->timestamps();
         });

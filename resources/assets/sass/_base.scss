@@ -1,9 +1,15 @@
 .main-body {
-
+  display: flex;
+  margin: 0 auto;
+  max-width: 1000px;
 }
 
 .container {
   @include rem("padding", 25px 15px);
-  margin: 0 auto;
-  max-width: 1000px;
+  flex: 1;
+}
+
+.content-container {
+  @include rem("padding", 25px 10px);
+  flex: 75% 0 0;
 }

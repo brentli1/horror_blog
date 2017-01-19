@@ -1,0 +1,4 @@
+.sidebar {
+  @include rem('padding', 25px 10px);
+  flex: 25% 0 0;
+}

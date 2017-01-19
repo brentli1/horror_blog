@@ -17,6 +17,11 @@
   </div>
 
   <div class="admin-form__input-wrapper">
+    <label class="admin-form__label" for="synopsis">Movie Synopsis</label>
+    <input class="admin-form__input" name="synopsis" type="text" value="{{$movie->synopsis}}">
+  </div>
+
+  <div class="admin-form__input-wrapper">
     <label class="admin-form__label" for="tags">Movie Tags</label>
     <select class="admin-form__select" multiple="multiple" name="tags[]" id="tags">
       @foreach($allTags as $tag)
@@ -65,7 +70,7 @@
 
 <h1 class="admin__title">Current Images</h1>
 <ul class="admin__image-list">
-  @foreach($images as $image)
+  @foreach($movie->images as $image)
   <li class="admin__image-item">
     <div class="admin__image-wrapper">
       <img src="/{{$image->path}}" alt="{{$image->id}}" class="admin__image @if ($image->featured == 1) admin__image-featured @endif">

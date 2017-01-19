@@ -9,6 +9,9 @@ use App\Review;
 
 class ReviewsController extends Controller
 {
+  /**
+  * Updates the review with request data
+  */
   public function updateReview($review_id, Request $request) {
     $review = Review::find($review_id);
 

@@ -23,7 +23,7 @@ class AdminController extends Controller
 
   public function index() { return view('admin/index'); }
 
-  // ADMIN TAGS METHODS
+  /***** ADMIN TAGS METHODS *****/
   public function tags() {
     $tags = Tag::all();
     return view('admin/tags/index', [
@@ -31,10 +31,12 @@ class AdminController extends Controller
     ]); 
   }
 
+  // Show the tag create page
   public function showTagCreate() {
     return view('admin/tags/create');
   }
 
+  // Show the tag edit page; fetch appropriate data
   public function showTagEdit($id) {
     $tag = Tag::find($id);
 
@@ -43,7 +45,7 @@ class AdminController extends Controller
     ]);
   }
 
-  // ADMIN MOVIES METHODS
+  /***** ADMIN MOVIES METHODS *****/
   public function movies() {
     $movies = Movie::all();
 
@@ -52,6 +54,7 @@ class AdminController extends Controller
     ]); 
   }
 
+  // Show the movie create page
   public function showMovieCreate() {
     $tags = Tag::all();
     return view('admin/movies/create', [
@@ -59,14 +62,15 @@ class AdminController extends Controller
     ]);
   }
 
+  // Show the movie edit page; fetch appropriate data
   public function showMovieEdit($id) {
     $movie = Movie::find($id);
     $movie->release_date = date('Y-m-d', strtotime($movie->release_date));
     $allTags = Tag::all();
     $tags = $movie->tags()->get();
     $review = $movie->reviews()->where('user_id', Auth::user()->id)->get();
-    $images = $movie->images()->get();
 
+    // Add a selected attribute to tags that are already assigned to this movie
     if(count($tags) !== 0) {
       foreach($allTags as $tag){
         foreach($tags as $subTag) {
@@ -81,8 +85,7 @@ class AdminController extends Controller
     return view('admin/movies/edit', [
       'movie' => $movie,
       'allTags' => $allTags,
-      'review' => $review,
-      'images' => $images
+      'review' => $review
     ]);
   }
 }

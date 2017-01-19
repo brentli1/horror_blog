@@ -13,6 +13,9 @@ use App\Image;
 
 class MoviesController extends Controller
 {
+  /**
+  * Gets the featured image and returns the movies index view with data
+  */
   public function index() {
     $movies = Movie::all();
 
@@ -26,19 +29,22 @@ class MoviesController extends Controller
     ]);
   }
 
+  /**
+  * Shows the selected movies show template with data
+  */
   public function show($id) {
     $movie = Movie::find($id);
-    $tags = Movie::find($id)->tags()->get();
-    $reviews = Movie::find($id)->reviews()->get();
 
     return view('movies/show', [
-      'movie' => $movie,
-      'tags' => $tags,
-      'reviews' => $reviews
+      'movie' => $movie
     ]);
   }
 
-  // ADMIN FUNCTIONALITY
+  /***** ADMIN FUNCTIONALITY *****/
+
+  /**
+  * Creates new movie with request data
+  */
   public function movieCreate(Request $request) {
     $this->validate($request, [
       'title' => 'required|unique:movies',
@@ -47,12 +53,14 @@ class MoviesController extends Controller
 
     $movie = new Movie;
     $movie->title = $request->title;
+    $movie->synopsis = $request->synopsis;
     $movie->release_date = Carbon::createFromFormat('Y-m-d', $request->release_date);
     $movie->save();
     
     // Attach tags to movie
     $movie->tags()->attach($request->tags);
 
+    // Use ImagesController to add images to movie
     if($request->file('img')) {
       app('App\Http\Controllers\ImagesController')->saveNewImage($movie->id, $request->file('img'));
     }
@@ -71,6 +79,9 @@ class MoviesController extends Controller
     return Redirect('/admin/movies');
   }
 
+  /**
+  * Edits existing movie with request data
+  */
   public function movieEdit($id, Request $request) {
     $this->validate($request, [
       'title' => 'required|unique:movies,title,'.$id
@@ -91,6 +102,9 @@ class MoviesController extends Controller
     return Redirect::back();
   }
 
+  /**
+  * Removes the movie from the database and detaches all associated data
+  */
   public function movieDelete($id) {
     $movie = Movie::find($id);
     app('App\Http\Controllers\ImagesController')->removeAllImages($movie->id);

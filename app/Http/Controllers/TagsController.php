@@ -20,15 +20,17 @@ class TagsController extends Controller
 
   public function show($id) {
     $tag = Tag::find($id);
-    $movies = Tag::find($id)->movies()->get();
 
     return view('tags/show', [
-      'tag' => $tag,
-      'movies' => $movies
+      'tag' => $tag
     ]);
   }
 
-  // ADMIN FUNCTIONALITY
+  /***** ADMIN FUNCTIONALITY *****/
+
+  /**
+  * Creates new tag with request data
+  */
   public function tagCreate(Request $request) {
     $this->validate($request, [
       'name' => 'required|unique:tags'
@@ -41,6 +43,9 @@ class TagsController extends Controller
     return Redirect('/admin/tags');
   }
 
+  /**
+  * Edits existing tag with request data
+  */
   public function tagEdit($id, Request $request) {
     $this->validate($request, [
       'name' => 'required|unique:tags,name,'.$id
@@ -53,6 +58,9 @@ class TagsController extends Controller
     return Redirect('/admin/tags');
   }
 
+  /**
+  * Removes tag and detaches all associated data
+  */
   public function tagDelete($id) {
     $tag = Tag::find($id);
     $tag->movies()->detach();

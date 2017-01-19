@@ -16,6 +16,11 @@
     </div>
 
     <div class="admin-form__input-wrapper">
+      <label class="admin-form__label" for="synopsis">Movie Synopsis</label>
+      <input class="admin-form__input" name="synopsis" type="text">
+    </div>
+
+    <div class="admin-form__input-wrapper">
       <label class="admin-form__label" for="tags">Movie Tags</label>
       <select class="admin-form__select" multiple="multiple" name="tags[]" id="tags">
         @foreach($tags as $tag)

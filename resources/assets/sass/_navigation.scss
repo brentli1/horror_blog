@@ -24,4 +24,12 @@
       color: #e50000;
     }
   }
+
+  #mobile-nav-trigger {
+    &:before {
+      content: $icon-menu;
+      font-family: $font-family-icons;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
 }
