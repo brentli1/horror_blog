@@ -4,10 +4,19 @@
   <div class="reviews content-container">
     <h1 class="reviews__title">{{$movie->title}}</h1>
     <div class="reviews__synopsis">{{$movie->synopsis}}</div>
+    <ul class="reviews__tags">
       @foreach($movie->tags as $tag)
-      <li>{{$tag->name}}</li>
+      <li class="reviews__tag-item"><a href="/tags/{{$tag->id}}">{{$tag->name}}</a></li>
       @endforeach
-        {!!$movie->reviews->first()->body!!}
+    </ul>
+    <div class="reviews__reviews-wrapper">
+      @foreach($movie->reviews as $review)
+      @include ('site/components/author', ['user' => $users->find($review->user_id)])
+      <div class="reviews__review-body">
+        {!!$review->body!!}
+      </div>
+      @endforeach
+    </div>
   </div>
 @endsection
 

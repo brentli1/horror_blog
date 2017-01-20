@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
 use App\Http\Requests;
+use App\User;
 use App\Movie;
 use App\Review;
 use App\Image;
@@ -34,9 +35,11 @@ class MoviesController extends Controller
   */
   public function show($id) {
     $movie = Movie::find($id);
+    $users = User::all();
 
     return view('movies/show', [
-      'movie' => $movie
+      'movie' => $movie,
+      'users' => $users
     ]);
   }
 

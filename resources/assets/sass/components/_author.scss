@@ -1,0 +1,31 @@
+.author {
+  @include rem("margin", 15px 0 10px);
+  display: flex;
+
+  &__image {
+    align-self: center;
+    border-radius: 0 25% 0;
+    max-width: 150px;
+  }
+
+  &__content-wrapper {
+    @include rem("padding", 15px);
+    position: relative;
+  }
+
+  &__name {
+    @include rem("font-size", 20px);
+    bottom: 3px;
+    color: $color-secondary;
+    // font-weight: $font-weight-light;
+    left: -30px;
+    position: absolute;
+    text-transform: uppercase;
+  }
+
+  &__blurb {
+    @include rem("font-size", 14px);
+    font-style: italic;
+    font-weight: $font-weight-light;
+  }
+}

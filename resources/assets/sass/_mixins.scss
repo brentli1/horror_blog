@@ -45,3 +45,17 @@
     cursor: pointer;
   }
 }
+
+@mixin tag() {
+  @include rem("padding", 5px 10px);
+  @include rem("font-size", 12px);
+  background-color: $color-secondary;
+  display: inline-block;
+  font-weight: $font-weight-light;
+  text-transform: uppercase;
+  transition: 250ms;
+
+  &:hover {
+    background-color: darken($color-secondary, 10);
+  }
+}
