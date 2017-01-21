@@ -37,9 +37,16 @@ class MoviesController extends Controller
     $movie = Movie::find($id);
     $users = User::all();
 
+    // Get related content
+    $tags = $movie->tags->modelKeys();
+    $relatedMovies = Movie::whereHas('tags', function ($q) use ($tags) {
+        $q->whereIn('tags.id', $tags);
+    })->where('id', '<>', $movie->id)->get();
+
     return view('movies/show', [
       'movie' => $movie,
-      'users' => $users
+      'users' => $users,
+      'related' => $relatedMovies
     ]);
   }
 

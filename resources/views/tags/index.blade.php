@@ -1,17 +1,16 @@
 @extends('layouts.site')
 
 @section('content')
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="panel panel-default">
-          <div class="panel-heading">Tags</div>
-          @each('site.components.tag', $tags, 'tag')
-          <div class="panel-body">
-            Tags Landing Page
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="tag container">
+    <div class="tag__section-title">Tags</div>
+    <ul class="tag__tag-items">
+      @foreach($tags as $tag)
+        <li class="tag__tag-item">
+          <a class="tag__tag-link" href="/tags/{{$tag->id}}">
+            {{$tag->name}}
+          </a>
+        </li>
+      @endforeach
+    </ul>
   </div>
 @endsection

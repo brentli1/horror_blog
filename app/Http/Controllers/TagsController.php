@@ -11,7 +11,7 @@ use App\Movie;
 class TagsController extends Controller
 {
   public function index() {
-    $tags = Tag::all();
+    $tags = Tag::orderBy('name', 'asc')->get();
     
     return view('tags/index', [
       'tags' => $tags
@@ -20,6 +20,11 @@ class TagsController extends Controller
 
   public function show($id) {
     $tag = Tag::find($id);
+
+    foreach($tag->movies as $movie) {
+      $featured_img = $movie->images->where('featured', 1)->first()['path'];
+      $movie->setAttribute('path', "/".$featured_img);
+    }
 
     return view('tags/show', [
       'tag' => $tag

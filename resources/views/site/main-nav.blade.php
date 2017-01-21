@@ -9,11 +9,6 @@
       </a>
     </li>
     <li class="main-nav__nav-item">
-      <a href="/about" class="main-nav__nav-link">
-        About
-      </a>
-    </li>
-    <li class="main-nav__nav-item">
       <a href="/tags" class="main-nav__nav-link">
         Tags
       </a>
@@ -23,9 +18,9 @@
         Reviews
       </a>
     </li>
-    <li class="main-nav__nav-item">
+    <l{{-- i class="main-nav__nav-item">
       <a id="mobile-nav-trigger" href="#" class="main-nav__nav-link">
       </a>
-    </li>
+    </li> --}}
   </ul>
 </section>

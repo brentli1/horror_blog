@@ -1,5 +1,7 @@
 .author {
   @include rem("margin", 15px 0 10px);
+  @include rem("padding", 10px);
+  background-color: #f3f3f3;
   display: flex;
 
   &__image {
@@ -10,16 +12,19 @@
 
   &__content-wrapper {
     @include rem("padding", 15px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: relative;
   }
 
   &__name {
     @include rem("font-size", 20px);
-    bottom: 3px;
+    @include rem("margin-top", 10px);
+    align-items: flex-end;
     color: $color-secondary;
-    // font-weight: $font-weight-light;
-    left: -30px;
-    position: absolute;
+    display: flex;
+    justify-content: space-between;
     text-transform: uppercase;
   }
 
@@ -27,5 +32,9 @@
     @include rem("font-size", 14px);
     font-style: italic;
     font-weight: $font-weight-light;
+  }
+
+  &__date {
+    @include rem("font-size", 14px);
   }
 }

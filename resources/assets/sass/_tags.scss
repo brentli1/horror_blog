@@ -1,4 +1,14 @@
-.movies {
+.tag {
+  &__section-title {
+    @include rem("font-size", 20px);
+    @include rem("margin-bottom", 20px);
+    text-transform: uppercase;
+  }
+
+  &__tag-item {
+    @include tag;
+  }
+
   &__list {
     display: flex;
     flex-flow: row wrap;
@@ -23,7 +33,7 @@
     display: flex;
 
     &:hover {
-      .movies__image-container {
+      .tag__image-container {
         transform: scale(1.1);
       }
     }
@@ -57,7 +67,7 @@
 }
 
 @media only screen and (max-width: 849px) {
-  .movies {
+  .tag {
     &__list {
       flex-direction: column;
     }
@@ -85,7 +95,7 @@
 }
 
 @media only screen and (max-width: 460px) {
-  .movies {
+  .tag {
     &__item-wrapper {
       flex-direction: column;
     }
